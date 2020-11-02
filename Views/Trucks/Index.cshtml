@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Accommodation.Models.Truck>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 align="center">Truck</h2>
+<a class="btn btn-default" href="@Url.Action("Create","Trucks")">
+    <i class="fa fa-plus"></i>
+    Add New Truck
+</a>
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.TruckMake.MakeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TruckModel.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TruckMake.MakeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TruckModel.ModelName)
+            </td>
+            <td>
+                @if (item.Image != null)
+                {
+                    var base64 = Convert.ToBase64String(item.Image);
+                    var ImgSource = string.Format("data:image/gif;base64,{0}", base64);
+                    <img src="@ImgSource" width="100" height="100" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyAddress)
+            </td>
+            <td>
+                <a href="@Url.Action("Details","Trucks", new { id=item.TaxiID })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                <a href="@Url.Action("Edit","Trucks", new { id=item.TaxiID })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Trucks", new { id = item.TaxiID })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+$('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>

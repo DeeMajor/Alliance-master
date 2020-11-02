@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Accommodation.Models.RoomBooking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (User.IsInRole("Tenant"))
+{
+    <h2>My Room Booking</h2>
+
+}
+else
+{
+    <h2>Room Bookings</h2>
+
+}
+
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room.RoomNumber)
+            </th>
+            <th>Building Address</th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenantEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Room.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildingAddress)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenantEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BookingId }) |
+                    @*@Html.ActionLink("Pay For Room |", "Delete", new { id = item.BookingId }) |*@
+                    @Html.ActionLink("View Receipt", "Details", new { id = item.BookingId })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>
+
+
+

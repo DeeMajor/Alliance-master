@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Accommodation.Models.RequestService>
+
+@{
+    ViewBag.Title = "Requests";
+}
+
+
+<h2 align="center">Requests </h2>
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.serviceType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CleanerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRequestingFor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSlot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.servicePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serviceName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serviceType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CleanerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRequestingFor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeSlot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.servicePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateRequested)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serviceName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","RequestServices", new { id=item.RequestServiceId })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                    <a href="@Url.Action("Edit","RequestServices", new { id=item.RequestServiceId })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("Delete", "RequestServices", new { id = item.RequestServiceId })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+$('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>

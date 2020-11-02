@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "tenant";
+    var message = TempData["AlertMessage"] ?? string.Empty; }
+<script>
+    var msg = '@message';
+    if (msg)
+        alert(msg);
+</script>
+
+<div class="jumbotron">
+    <h1 style="text-align:center;">Discover Your New Home</h1>
+
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+</div>
+
+<p>Where would you like to stay!!</p>
+<p>Search by City</p>
+<p>
+    @using (@Html.BeginForm("Index2", "Buildings", FormMethod.Post))
+    {
+        <div style="min-width:100% !important">
+    <p style="min-width:100% !important;" placeholder="Route Name">
+        @Html.TextBox("search")
+    </p>
+    </div>
+    <div>
+        <input type="submit" value="search" placeholder="Route Name" />
+    </div>
+}
+    </p>

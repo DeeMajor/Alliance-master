@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Accommodation.Models.Maintenance>
+
+@{
+    ViewBag.Title = "AdminIndex";
+}
+
+<h2>Maintenance</h2>
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.TenantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenantEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.propertyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenantEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReportDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FixedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.propertyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if (item.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(item.Image);
+                        var ImgSource = string.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@ImgSource" width="100" height="100" />
+                    }
+                </td>
+               
+                <td>
+                    @if (item.Status == "Awaiting")
+                    {
+                        <a href="@Url.Action("Seen", "Maintenances", new { id = item.MaintainanceId })" onclick="return confirm('Are you sure you want to Confirm seeing this issue, click Ok to Confirm, Or Cancel');" rel="tooltip" title="Confirm" class="btn btn-success btn-simple btn-xs"><i class="fa fa-times">Seen</i></a>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'csv', 'pdf', 'print'
+            ],
+            language: { search: "" },
+            select: true
+        }
+    );
+    $(".dataTables_filter input").addClass("search-input");
+    $(".dataTables_filter input").attr('placeholder', 'Search');
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');</script>

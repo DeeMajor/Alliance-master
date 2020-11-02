@@ -1,0 +1,84 @@
+﻿@model Accommodation.Models.Service
+
+@{
+    ViewBag.Title = "Service";
+}
+    <script>
+        function displayText(x) {
+            if (x == 0)
+                document.getElementById("idd").style.display = "block";
+            else
+                document.getElementById("idd").style.display = "none";
+            return;
+        }
+    </script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Service</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ServiceTypeId, "ServiceType", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ServiceTypeId", null, htmlAttributes: new { @class = "form-control", @onChange = "SelectedValue(this)" })
+                @Html.ValidationMessageFor(model => model.ServiceTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.servicePrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.servicePrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.servicePrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group" id="idd" hidden>
+            @Html.LabelFor(model => model.serviceName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.serviceName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.serviceName, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+
+    //To get selected value an text of dropdownlist
+    function SelectedValue(ddlObject)
+    {
+        //Selected value of dropdownlist
+        var selectedValue = ddlObject.value;
+        //Selected text of dropdownlist
+        var selectedText = ddlObject.options[ddlObject.selectedIndex].innerHTML;
+
+        //alert popup with detail of seleceted value and text
+        //alert(" Selected Value: " + selectedValue + " -- " + "Selected Text: " + selectedText);
+
+        if (selectedText == "Laundry")
+            document.getElementById("idd").style.display = "block";
+        else
+            document.getElementById("idd").style.display = "none";
+    }
+</script> 

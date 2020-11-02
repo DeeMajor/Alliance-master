@@ -1,0 +1,105 @@
+﻿@model Accommodation.Models.Appointment
+
+@{
+    ViewBag.Title = "Appointment Details";
+}
+
+@*<h2 class="title text-center">@ViewBag.Title</h2>*@
+<div class="row">
+    <div class="col-md-4">
+        <h3>Manager Details</h3>
+        <table class="table">
+            <tr>
+                <th style="width:120px">Appoinment #</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.AppointmentId, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.AppointmentId, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Manager Name</th>
+                <td>
+                    <div class="input-group">
+                        @Html.DisplayFor(m => m.Managers.FullName, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Managers.FullName, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Manager Phone   </th>
+                <td>
+                    <div class="input-group">
+                        @Html.DisplayFor(m => m.Managers.Phone, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Managers.Phone, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            @*<tr>
+                    <th>@Html.LabelFor(model => model.NextOfKinID)</th>
+                    <td>
+                        <div class="input-group">
+
+                            @Html.DisplayFor(m => m.NextOfKinID, new { @class = "form-control", @placeholder = "Registration Number" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.NextOfKinID, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+          
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3>Appointment details</h3>
+        <table class="table">
+            <tr>
+                <th>@Html.LabelFor(model => model.email)</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Registration Number" } })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Appointment Date</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.ADate, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.ADate, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.BuildingAddress)</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.BuildingAddress, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.BuildingAddress, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Time Slots</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.Timeslot.TimeS, new { @class = "form-control", @required = "required" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Timeslot.TimeS, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row text-center">
+        <a class="btn btn-default" href="@Url.Action("Index","Appointments")">
+            <i class="fa fa-angle-left"></i>
+            My Appointment Booking details
+        </a>
+    </div>

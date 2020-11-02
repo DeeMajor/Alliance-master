@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="homelinkgrp18" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Sivuyise\\Desktop\\Alliance-master\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Sivuyise\\Desktop\\Alliance-master\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Accommodation.Models.ApplicationDbContext-Web.config Connection String" description="" value="Accommodation.Models.ApplicationDbContext_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sivuyise\\Desktop\\Alliance-master\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Accommodation.Models.ApplicationDbContext']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Server=tcp:allianceservers.database.windows.net,1433;Initial Catalog=allianceDB;Persist Security Info=False;User ID=Sivuyise;Password=Password@12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sivuyise\\Desktop\\Alliance-master\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

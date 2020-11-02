@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Accommodation.Models.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Appointments</h2>
+
+@if (User.IsInRole("Tenant"))
+{
+
+}
+
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.Managers.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timeslot.TimeS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ADate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Managers.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Timeslot.TimeS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ADate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuildingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if (User.IsInRole("Tenant"))
+                    {
+                        @Html.ActionLink("Edit |", "Edit", new { id = item.AppointmentId })
+                        @Html.ActionLink("Details |", "Details", new { id = item.AppointmentId })
+                        @Html.ActionLink("Delete ", "Delete", new { id = item.AppointmentId })
+
+                    }
+
+                    @if (!User.IsInRole("Tenant"))
+                    {
+                        <a href="@Url.Action("Edit","Appointments", new { id=item.AppointmentId })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                        <a href="@Url.Action("Details","Appointments", new { id=item.AppointmentId })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                        @Html.ActionLink("Confirm Appointmen ", "ConfirmAppointment", new { id = item.AppointmentId })
+
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>
+
+

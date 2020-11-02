@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Accommodation.Models.TruckModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2 align="center">Truck Models </h2>
+<a class="btn btn-default" href="@Url.Action("Create","TruckModels")">
+    <i class="fa fa-plus"></i>
+    Add New Model
+</a>
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                <a href="@Url.Action("Details","TruckModels", new { id=item.TruckModelID })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                <a href="@Url.Action("Edit","TruckModels", new { id=item.TruckModelID })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "TruckModels", new { id = item.TruckModelID })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+<script type="text/javascript">$('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>

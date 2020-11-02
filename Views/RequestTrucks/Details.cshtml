@@ -1,0 +1,90 @@
+﻿@model Accommodation.Models.RequestTruck
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequestTruck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pickUpDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pickUpDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pickUpTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pickUpTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propertyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.propertyAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.myLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.myLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Distance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Distance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestTruckId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

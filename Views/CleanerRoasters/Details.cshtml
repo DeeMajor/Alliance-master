@@ -1,0 +1,34 @@
+﻿@model Accommodation.Models.CleanerRoaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CleanerRoaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GetCleaners.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GetCleaners.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GetService.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GetService.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CleanerRoasterId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

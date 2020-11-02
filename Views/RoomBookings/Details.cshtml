@@ -1,0 +1,106 @@
+﻿@model Accommodation.Models.RoomBooking
+
+@{ ViewBag.Title = "Appointment Details"; }
+
+@*<h2 class="title text-center">@ViewBag.Title</h2>*@
+<div class="row">
+    <div class="col-md-4">
+        <h3>Room Details</h3>
+        <table class="table">
+            <tr>
+                <th style="width:120px">Booking #</th>
+                <td>
+                    <div class="input-group">
+                            
+                        @Html.DisplayFor(m => m.BookingId, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.BookingId, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Room Number</th>
+                <td>
+                    <div class="input-group">
+                        @Html.DisplayFor(m => m.Room.RoomNumber, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Room.RoomNumber, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Room Price   </th>
+                <td>
+                    <div class="input-group">
+                        @Html.DisplayFor(m => m.RoomPrice, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.RoomPrice, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            @*<tr>
+                    <th>@Html.LabelFor(model => model.NextOfKinID)</th>
+                    <td>
+                        <div class="input-group">
+
+                            @Html.DisplayFor(m => m.NextOfKinID, new { @class = "form-control", @placeholder = "Registration Number" })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.NextOfKinID, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3>Booking details</h3>
+        <table class="table">
+            <tr>
+                <th>@Html.LabelFor(model => model.DateOFBooking)</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.DateOFBooking, new { htmlAttributes = new { @class = "form-control", @placeholder = "Registration Number" } })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.DateOFBooking, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>Building Name</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.BuildingId, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.BuildingId, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.BuildingAddress)</th>
+                <td>
+                    <div class="input-group">
+
+                        @Html.DisplayFor(m => m.BuildingAddress, new { @class = "form-control", @placeholder = "Registration Number" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.BuildingAddress, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (Model.QrCodeImage != null)
+                    {
+        <p style="text-align:center">
+            <img alt="" src="data:image/png;base64,@Convert.ToBase64String(Model.QrCodeImage, 0, Model.QrCodeImage.Length)" />
+        </p>}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row text-center">
+    <a class="btn btn-default" href="@Url.Action("Index","Appointments")">
+        <i class="fa fa-angle-left"></i>
+        My Room Booking details
+    </a>
+    @Html.ActionLink("Confirm and Accept Payment", "Details", "RoomBookings", new { id = Model.BookingId }, new { @class = "btn btn-success" })
+
+
+</div>
+

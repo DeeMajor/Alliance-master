@@ -1,0 +1,96 @@
+﻿@model Accommodation.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Add Cleaners";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("RegisterCleaner", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @*<h4>Create a new account.</h4>*@
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th width="180px">@Html.LabelFor(m => m.FullName)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "First Name" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(m => m.LastName)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(m => m.Phone)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Cell Number" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>                  
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th width="180px">@Html.LabelFor(m => m.Email)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-at"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="180px">@Html.LabelFor(m => m.Gender)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-at"></i>
+                            </div>
+                            @Html.TextBoxFor(m => m.Gender, new { @class = "form-control", @placeholder = "Gender" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="row text-center">
+        <input type="submit" class="btn btn-default" value="Create Account" />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

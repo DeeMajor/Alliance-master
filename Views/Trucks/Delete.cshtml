@@ -1,0 +1,72 @@
+﻿@model Accommodation.Models.Truck
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Truck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckMake.MakeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckMake.MakeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckModel.ModelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckModel.ModelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.landlordEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.landlordEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyAddress)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

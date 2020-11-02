@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Accommodation.Models.RoomType>
+@{ ViewBag.Title = "About";
+   }
+<br />
+<h2 align="center">Room Type</h2>
+
+<a class="btn btn-default" href="@Url.Action("Create","RoomTypes")">
+    <i class="fa fa-plus"></i>
+    Add New Room Type
+</a>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="table-header-row">
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Type)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NumOfRooms)
+                                    </th>
+
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumOfRooms)
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Details","RoomTypes", new { id=item.roomtypeId })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                            <a href="@Url.Action("Edit","RoomTypes", new { id=item.roomtypeId })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                            <a href="@Url.Action("Delete", "RoomTypes", new { id = item.roomtypeId })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></a>
+                        </td>
+
+                    </tr>
+}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </div>
+            <script>
+                $(function () {
+                    $('#example1').DataTable()
+                    $('#example2').DataTable({
+                        'paging': true,
+                        'lengthChange': false,
+                        'searching': false,
+                        'ordering': true,
+                        'info': true,
+                        'autoWidth': false
+                    })
+                })
+            </script>

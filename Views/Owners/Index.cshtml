@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Accommodation.Models.Owner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Details</h2>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.AltContactNumber)
+        </th>
+        <th class="col-md-4">
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FullName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IDNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FileName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AltContactNumber)
+    </td>
+
+    <td>
+        <button id="btnShowModal" type="button"
+                class="btn btn-sm btn-default pull-left col-lg-11 button button4">
+            Pay Subscription
+        </button>
+
+    </td>
+
+
+</tr>
+    }
+
+
+    <div>
+        @*<h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">Satyaprakash Bootstrap PopUp</h2>*@
+        <fieldset>
+            <legend style="color:orangered"></legend>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        @*<button id="btnShowModal" type="button"
+                                class="btn btn-sm btn-default pull-left col-lg-11 button button4">
+                            Satya Modals
+                        </button>*@
+
+                        <div class="modal fade" tabindex="-1" id="loginModal"
+                             data-keyboard="false" data-backdrop="static">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                        </button>
+                                        <h4 class="modal-title">Subscription Details</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5>
+                                            To keep us up and function:<p> 
+                                            <p> One Building - R200 </p>
+                                            <p> Two - Five Buildings - R950 </p>
+                                            <p> Six - Ten Buildings - R1800 </p>
+                                            <p> Eleven and More - R12000</p>
+                                        </h5>
+                                    </div>
+                                    <div class="modal-footer">
+                                        @Html.ActionLink("Confirm and Accept Payment", "OnceOff", "Owners", new { @class = "btn btn-primary button button4" })
+                                        <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                                            Hide
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+    </script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btnShowModal").click(function () {
+                $("#loginModal").modal('show');
+            });
+
+            $("#btnHideModal").click(function () {
+                $("#loginModal").modal('hide');
+            });
+        });
+    </script>
+
+</table>

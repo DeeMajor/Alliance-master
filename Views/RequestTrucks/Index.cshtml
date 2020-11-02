@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Accommodation.Models.RequestTruck>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>Truck Requests</h2>
+
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.pickUpDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pickUpTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TruckId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.propertyAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.myLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TruckMake)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TruckModel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pickUpDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pickUpTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TruckId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.propertyAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.myLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TruckMake)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TruckModel)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit","RequestTrucks", new { id=item.RequestTruckId })" rel="tooltip" title="Pay" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">$('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>

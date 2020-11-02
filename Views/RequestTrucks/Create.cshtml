@@ -1,0 +1,170 @@
+﻿@model Accommodation.Models.RequestTruck
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Relocating Furniture</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.pickUpDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pickUpDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pickUpDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pickUpTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pickUpTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pickUpTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.propertyAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" readonly value="@ViewBag.propertyName" class="form-control" name="propertyAddress" id="Source" />
+                @*@Html.EditorFor(model => model.propertyAddress, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.propertyAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.myLocation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.myLocation, new { htmlAttributes = new { @class = "form-control", id = "RouteName" } })
+                @Html.ValidationMessageFor(model => model.myLocation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Distance, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Distance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Distance, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Request" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA-CuRRycZNmjSB3ilxqrGTcXCxboP_9g&libraries=places"></script>
+    @*https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyDdZxPOLbqayexnIlNSUWGN2plfrLVXi50*@
+    <script type="text/javascript">// Set the country restriction based on user input.
+        google.maps.event.addDomListener(window, 'load', function () {
+            var options = {
+                types: ['(cities)'],
+                componentRestrictions: { country: "ZA" }
+            };
+            var input = document.getElementById('RouteName');
+            var places = new google.maps.places.Autocomplete(input, options);
+        });
+
+        $('#RouteName').focusout(function () {
+            var source, destination;
+            var locations = [];
+            var directionsDisplay;
+
+            source = document.getElementById('Source').value;
+            destination = document.getElementById('RouteName').value;
+
+            onTextCompleted(source, destination);
+        });
+
+        function onTextCompleted(source, destination) {
+
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                "address": destination
+            }, function (results) {
+                if (results) {
+                    document.getElementById('Latitude').value = results[0].geometry.location.lat();
+                    document.getElementById('Longitude').value = results[0].geometry.location.lng();
+
+                    getDistance(source, new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng()));
+                }
+            });
+        }
+
+        function getDistance(source, destination) {
+            var directionsService = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
+
+            var request = {
+                origin: source,
+                destination: destination,
+                waypoints: [{
+                    location: destination,
+                    stopover: true
+                }], //an array of waypoints
+                optimizeWaypoints: true, //set to true if you want google to determine the shortest route or false to use the order specified.
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+
+
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    var distance = 0;
+                    var minute = 0.00;
+                    response.routes[0].legs.forEach(function (item, index) {
+                        if (index < response.routes[0].legs.length - 1) {
+                            distance = distance + parseInt(item.distance.text);
+                            document.getElementById("Distance").value = distance;
+                            minute = parseFloat(minute) + parseFloat(item.duration.value / 60);
+                            document.getElementById("Duration").value = minute;
+
+                            //tbl = document.getElementById("tblResults");
+                            //var row = tbl.insertRow(1);
+                            //var cell = row.insertCell(0);
+                            //cell.innerText = source;
+                            //var cell = row.insertCell(1);
+                            //cell.innerText = item.end_address;
+                            //var cell = row.insertCell(2);
+                            //cell.innerText = distance;
+                            //var cell = row.insertCell(3);
+                            //cell.innerText = minute.toFixed(2) + " min";
+                        }
+                    });
+                    directionsDisplay.setDirections(response);
+                }
+                else {
+                    //handle error
+                }
+            })
+        }</script>
+
+}

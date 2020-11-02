@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Accommodation.Models.ServiceType>
+
+@{
+    ViewBag.Title = "ServiceTypes";
+}
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 100% !important;
+        margin: auto;
+        text-align: center;
+        /*            height: 250px !important;*/
+        margin-bottom: 20px !important;
+        border: groove !important;
+    }
+        .card:hover {
+            border-radius: 10px;
+            border-color: aqua !important;
+        }
+</style>
+<h2 style="text-align:center!important; padding-bottom:20px !important;">Service Types</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6">
+                <div class="card">
+                    @*<img class="card-img-top" src="holder.js/100x180/" alt="">*@
+                    <div class="card-body">
+                        <h4 class="card-title"> <strong> @Html.DisplayFor(modelItem => item.Type)</strong></h4>
+                        @*<p class="card-text">@Html.DisplayFor(modelItem => item.ShortDescription)</p>*@
+                        <p><a class="btn btn-default" onclick="location.href='@Url.Action("ServiceRequest","CleanerRoasters", new { id=item.ServiceTypeId})'">Go To Services &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

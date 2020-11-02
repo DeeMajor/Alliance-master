@@ -1,0 +1,82 @@
+﻿@model Accommodation.Models.Maintenance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Maintenance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FixedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FixedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.propertyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.propertyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaintainanceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,52 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+#header {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    background: url('https://cdn.mapsinternational.co.uk/pub/media/catalog/product/cache/9408c2af9b2aa1f0e92b23ce5de2be46/r/o/rome-city-street-map-print-charcoal_ls01560.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+}
+
+#header button, [type="text"] {
+    position: absolute;
+    height: 10vh;
+    font-size: 5vh;
+    border: none;
+    bottom: 0;
+}
+
+#header button {
+    width: 20%;
+    right: 0;
+    color: #fff;
+    background: #FF9700;
+    cursor: pointer;
+}
+
+#header [type='text'] {
+    background: #fff;
+    bottom: 0;
+    width: 80%;
+    color: #777675;
+    padding-left: 20px;
+    padding-right: 20px;
+}

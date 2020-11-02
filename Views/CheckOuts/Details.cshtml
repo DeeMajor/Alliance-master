@@ -1,0 +1,42 @@
+﻿@model Accommodation.Models.CheckOut
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CheckOut</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.checkOutDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.checkOutDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.checkOutTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.checkOutTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenantEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenantEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CheckOutId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

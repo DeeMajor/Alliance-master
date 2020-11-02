@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Accommodation.Models.Truck>
+
+@{
+    ViewBag.Title = "TruckRequest";
+}
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 100% !important;
+        margin: auto;
+        text-align: center;
+        height: 160px !important;
+        margin-bottom: 20px !important;
+        border: groove !important;
+    }
+
+        .card:hover {
+            border-radius: 10px;
+            border-color: aqua !important;
+        }
+</style>
+<h2 style="text-align:center; padding-bottom:20px !important">Available Trucks</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-8">
+                <div class="card">
+
+                    <img class="card-img-top" src="data:image/png;base64,@Convert.ToBase64String(item.Image, 0, item.Image.Length)" style="width: 200px; height: 150px" alt="" align="left">
+
+                    <div class="card-body" @*align="center"*@>
+                        <h4 class="card-title"><strong>@Html.DisplayFor(x => item.TruckMake.MakeName)</strong></h4>
+                        <h4 class="card-title"><strong>@Html.DisplayFor(x => item.TruckModel.ModelName)</strong></h4>
+                        <h4 class="card-title"><strong>@Html.DisplayFor(x => item.TaxiID)</strong></h4>
+                        <br />
+                        <p><a class="btn btn-default" onclick="location.href='@Url.Action("Create","RequestTrucks", new { id=item.TaxiID})'">Request Truck &raquo;</a></p>
+                    </div>
+                    </div>
+                </div>
+            }
+    </div>
+</div>

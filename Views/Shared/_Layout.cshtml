@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="icon" href="~/favicon.ico" />
+    <link href="~/Content/tabstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: navy !important">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Alliance Properties SA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Gallery", "Galary", "Home")</li>*@
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Room Type", "Index", "RoomTypes")</li>
+                        <li>@Html.ActionLink("Applications", "AdminIndex", "Owners")</li>
+                        <li>@Html.ActionLink("Approved Applications", "Index", "ApprovedOwners")</li>
+                        <li>@Html.ActionLink("Time Slots", "Index", "timeslots")</li>
+                         <li>@Html.ActionLink("Subscription Price", "Index", "SubscriptionPrices")</li>
+                    }
+                    else if (User.IsInRole("Landlord"))
+                    {
+                        <li>@Html.ActionLink("My Details", "Index1", "ApprovedOwners")</li>
+                        <li>@Html.ActionLink("Cleaners", "Index", "Cleaners")</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Truck<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Truck Model", "Index", "TruckModels")</li>
+                                <li>@Html.ActionLink("Truck Make", "Index", "TruckMakes")</li>
+                                <li>@Html.ActionLink("Truck", "Index", "Trucks")</li>
+                                <li>@Html.ActionLink("Truck Prices", "Index", "TruckPrices")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Manage Buiding<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Add Building", "Index", "Buildings")</li>
+                                <li>@Html.ActionLink("Add Rooms", "Index", "Rooms")</li>
+                                <li>@Html.ActionLink("Managers", "Index", "Managers")</li>
+                                <li>@Html.ActionLink("Assign Manager", "Create", "ManagerBuildings")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li>@Html.ActionLink("My Appointments", "Index", "Appointments")</li>
+                        <li>@Html.ActionLink("My Details", "Index", "Managers")</li>
+                        <li>@Html.ActionLink("Room Bookings", "Index", "RoomBookings")</li>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Truck<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Truck Model", "Index", "TruckModels")</li>
+                                <li>@Html.ActionLink("Truck Make", "Index", "TruckMakes")</li>
+                                <li>@Html.ActionLink("Truck", "Index", "Trucks")</li>
+                                <li>@Html.ActionLink("Truck Prices", "Index", "TruckPrices")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Additional Amenities<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Services", "Create", "Services")</li>
+                                <li>@Html.ActionLink("Service Type", "Index", "ServiceTypes")</li>
+                                <li>@Html.ActionLink("Service Roaster", "Index", "CleanerRoasters")</li>
+                                <li>@Html.ActionLink("Requested Services", "Index", "RequestServices")</li>
+                                <li>@Html.ActionLink("Requested Maintenances", "AdminIndex", "Maintenances")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Tenant"))
+                    {                       
+                        <li>@Html.ActionLink("Vacate Property", "Create", "CheckOuts")</li>
+                        <li>@Html.ActionLink("My Bookings", "Index", "RoomBookings")</li>
+                        <li>@Html.ActionLink("My Details", "Index", "Tenants")</li>
+                        <li>@Html.ActionLink("All Properties", "Index3", "Buildings")</li>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Additional Amenities<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Request Service", "ServiceTypes", "ServiceTypes")</li>
+                                <li>@Html.ActionLink("My Previous Requests", "TenantIndex", "RequestServices")</li>
+                                <li>@Html.ActionLink("Request Maintenance", "Index", "Maintenances")</li>
+                                <li>@Html.ActionLink("Requeste Truck", "Create", "RequestTrucks")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        @*<li>@Html.ActionLink("My Details", "Index", "Owners")</li>*@
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Aliance Properties SA</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

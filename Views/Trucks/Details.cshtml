@@ -1,0 +1,66 @@
+﻿@model Accommodation.Models.Truck
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Truck</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckMake.MakeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckMake.MakeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckModel.ModelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckModel.ModelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.landlordEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.landlordEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyAddress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TaxiID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

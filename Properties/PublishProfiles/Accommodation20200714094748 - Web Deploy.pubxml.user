@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPE5d7Uq79E2zjT3HYhNi3QAAAAACAAAAAAAQZgAAAAEAACAAAACjSfON+uCn9Jo8fWLZ7aYqC3+yOjgAX77kCsvwY5walgAAAAAOgAAAAAIAACAAAAAlW9IGENLYlwxyRFbnPhovnAH56lrvg5026Yr4JLHJI4AAAAAGWTiVSVTAJ9BnB07MU0KeG3IusZoySv4HGn0DVya8hmmd1OQI/2Khnu8cLEONpZODf/PiMiKHqmK/TvQIhGQXgkkXjCnKqWp/d0+t7Qfq8i2VnaWVR7R4K+1Vpn7HLa+c0xO/k6CsFt5Ocnu81R+DasRV7YE9/uQWNlM/znkPGkAAAACbmkH5z+bb1asl8dKaI/HEQ61pvjCvnIbxuzeN6FDarxVptgoi6ANVJoJgG2zZMNMqRUmqiWy3ku3EbMvzoEK3</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <AzureDBConnectionStrings Include="Data Source=tcp:accommodation20200714094748dbserver.database.windows.net,1433;Initial Catalog=Accommodation20200714094748_db1;User Id=Lungelo@accommodation20200714094748dbserver;Password=Lu12345#" />
+    <AzureDBConnectionStrings Include="Data Source=tcp:accommodation20200714094748dbserver.database.windows.net,1433;Initial Catalog=Accommodation20200714094748_db;User Id=Lungelo@accommodation20200714094748dbserver;Password=Lu12345#" />
+  </ItemGroup>
+</Project>

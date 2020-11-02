@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Accommodation.Models.Building>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+
+<h2 align="center">Buildings</h2>
+<br />
+<a class="btn btn-default" href="@Url.Action("Create","Buildings")">
+    <i class="fa fa-plus"></i>
+    Add New Building
+</a>
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            @*<th>
+            Co-ordinates
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfFloors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfAccommodation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalNumberOfRooms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingPic)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>            
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+        
+            @*<td>
+            @($"{item.Latitude}, {item.Longitude}")
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfFloors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfAccommodation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalNumberOfRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingDescription)
+            </td>
+            <td>
+                <a><img src="data:image/png;base64,@Convert.ToBase64String(item.BuildingPic, 0, item.BuildingPic.Length)" style="width: 40px; height: 40px" alt="" /></a>
+            </td>
+            <td>
+                <a href="@Url.Action("Details","Buildings", new { id=item.BuildingId })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                <a href="@Url.Action("Edit","Buildings", new { id=item.BuildingId })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                <a href="@Url.Action("Delete", "Buildings", new { id = item.BuildingId })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+         {
+             dom: 'Bfrtip',
+             lengthMenu: [
+                 [10, 25, 50, -1],
+                 ['10 rows', '25 rows', '50 rows', 'Show all']
+             ],
+             buttons: [
+                 'pageLength', 'csv', 'pdf', 'print'
+             ],
+             language: { search: "" },
+             select: true
+         }
+     );
+     $(".dataTables_filter input").addClass("search-input");
+     $(".dataTables_filter input").attr('placeholder', 'Search');
+     $('#my_list')
+         .removeClass('display')
+         .addClass('table table-striped table-hover');</script>
+

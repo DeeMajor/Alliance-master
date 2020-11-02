@@ -1,0 +1,90 @@
+﻿@model Accommodation.Models.RequestService
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequestService</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.serviceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serviceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CleanerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CleanerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRequestingFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRequestingFor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeSlot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeSlot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servicePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servicePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CleanerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CleanerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRequested)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRequested)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serviceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serviceName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestServiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

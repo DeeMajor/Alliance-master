@@ -1,0 +1,154 @@
+﻿@model Accommodation.Models.Building
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Building</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildingName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildingName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.street_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.street_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.route)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.route)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.locality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.locality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.administrative_area_level_1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.administrative_area_level_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postal_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postal_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfFloors)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoOfFloors)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOfAccommodation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfAccommodation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalNumberOfRooms)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalNumberOfRooms)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildingDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildingDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuildingPic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuildingPic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BuildingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

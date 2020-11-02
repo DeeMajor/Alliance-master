@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2020-07-14T07:25:00.5894884Z"
+    }
+  },
+  "parameters": {
+    "resourceGroup": {
+      "Type": "resourceGroup",
+      "Value": "blobmanangerdb"
+    },
+    "subscriptionId": {
+      "Type": "subscription",
+      "Value": "d01560b5-8db5-4074-b0b3-da8db9a31242"
+    }
+  }
+}

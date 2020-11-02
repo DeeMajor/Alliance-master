@@ -1,0 +1,181 @@
+﻿
+@model IEnumerable<Accommodation.Models.ApprovedOwnerss>
+@{
+    ViewBag.Title = "Index";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+}
+<script>
+    var msg = '@message';
+    if (msg)
+        alert(msg);
+</script>
+<h2 align="center">My Details</h2>
+<br />
+<table class="table table-hover table-striped table-responsive" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDNumber)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AltContactNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDNumber)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AltContactNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                <td>
+                    @if (item.Status == "Awaiting Approval" || item.Status == "Approved")
+                    {
+                        <button id="btnShowModal" type="button"
+                                class="btn btn-sm btn-default pull-left col-lg-11 button button4">
+                            Pay Subscription
+                        </button>
+                    }
+                    else if(item.Status=="Paid")
+                    {
+
+                    }
+
+
+                </td>
+            </tr>
+
+            <div>
+                @*<h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">Satyaprakash Bootstrap PopUp</h2>*@
+                <fieldset>
+                    <legend style="color:orangered"></legend>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                @*<button id="btnShowModal" type="button"
+                                            class="btn btn-sm btn-default pull-left col-lg-11 button button4">
+                                        Satya Modals
+                                    </button>*@
+
+                                <div class="modal fade" tabindex="-1" id="loginModal"
+                                     data-keyboard="false" data-backdrop="static">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                </button>
+                                                <h4 class="modal-title">Subscription Details</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>
+                                                    <p>Dear Landlord, Your subscription fee is: @item.Price</p>
+                                                </h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                @Html.ActionLink("Confirm and Accept Payment", "OnceOff", "ApprovedOwners", new { id = item.ownerID, @class = "btn btn-primary button button4" })
+                                                <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                                                    Hide
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        }
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'csv', 'pdf', 'print'
+            ],
+            language: { search: "" },
+            select: true
+        }
+    );
+    $(".dataTables_filter input").addClass("search-input");
+    $(".dataTables_filter input").attr('placeholder', 'Search');
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+</script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            $("#loginModal").modal('show');
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+</script>
+
+</table>
+
