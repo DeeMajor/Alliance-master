@@ -22,6 +22,10 @@ namespace Accommodation.Controllers
         {
             return View();
         }
+        public ActionResult ClientHome()
+        {
+            return View();
+        }
         public ActionResult tenant()
         {
             return View();
