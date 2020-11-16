@@ -2,64 +2,210 @@
 
 @{
     ViewBag.Title = "RoomBooking";
+    Layout = "~/Views/Shared/_Client.cshtml";
 }
-<br />
-<br />
-<h2 align="center">Properties</h2>
-<div class="row">
+<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="bannerCarousole" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner banner-slider-inner text-left">
+            <div class="carousel-item banner-max-height active">
+                <img class="d-block w-100 h-100" src="~/Content/Clientside/img/banner/banner-1.jpg" alt="banner">
+            </div>
+            <div class="carousel-item banner-max-height">
+                <img class="d-block w-100 h-100" src="~/Content/Clientside/img/banner/banner-3.jpg" alt="banner">
+            </div>
+            <div class="carousel-item banner-max-height">
+                <img class="d-block w-100 h-100" src="~/Content/Clientside/img/banner/banner-2.jpg" alt="banner">
+            </div>
+            <div class="carousel-content container banner-info-2 bi-3 text-center">
+                <h3>Find Your Apartments</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                <a href="index-2.html" class="btn btn-white btn-read-more">Read More</a>
+            </div>
+        </div>
+        <!-- Search area 3 start -->
+        <div class="search-area-5 none-992">
+            <div class="container">
+                <div class="inline-search-area">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <select class="selectpicker search-fields" name="any-status">
+                                <option>Form Area</option>
+                                <option>3600</option>
+                                <option>3000</option>
+                                <option>2400</option>
+                                <option>1800</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <select class="selectpicker search-fields" name="any-status">
+                                <option>Any Status</option>
+                                <option>For Rent</option>
+                                <option>For Sale</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <select class="selectpicker search-fields" name="all-type">
+                                <option>All Type</option>
+                                <option>Apartments</option>
+                                <option>Shop</option>
+                                <option>Restaurant</option>
+                                <option>Villa</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <select class="selectpicker search-fields" name="bedrooms">
+                                <option>Bedrooms</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <select class="selectpicker search-fields" name="bathrooms">
+                                <option>Bathrooms</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <select class="selectpicker search-fields" name="location">
+                                <option>Location</option>
+                                <option>American</option>
+                                <option>Florida</option>
+                                <option>Belgium</option>
+                                <option>Canada</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <div class="range-slider">
+                                <div data-min="0" data-max="150000" data-min-name="min_price" data-max-name="max_price" data-unit="USD" class="range-slider-ui ui-slider" aria-disabled="false"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 form-group">
+                            <button class="btn button-theme btn-search btn-block">
+                                <i class="fa fa-search"></i><strong>Find</strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search area 3 end -->
+    </div>
+</div>
+
+
+<!-- Featured Properties start -->
+<div class="featured-properties content-area-14">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>Featured Properties</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="property-box">
+                        <div class="property-thumbnail">
+                            <a href="properties-details.html" class="property-img">
+                                <div class="tag">Featured</div>
+                                @*<div class="price-box"><span>$850.00</span> month</div>*@
+                                <img class="d-block w-100" src="data:image/png;base64,@Convert.ToBase64String(@item.BuildingPic, 0, @item.BuildingPic.Length)" style="width: 300px; height: 200px" alt="properties">
+                            </a>
+                        </div>
+                        <div class="detail">
+                            <h1 class="title">
+                                <a href="#">@Html.DisplayFor(modelItem => item.BuildingName)</a>
+                            </h1>
+                            <div class="location">
+                                <a href="properties-details.html">
+                                    <i class="flaticon-pin"></i>@Html.DisplayFor(modelItem => item.Address)
+                                </a>
+                            </div>
+                            <ul class="facilities-list clearfix">
+                                <li>
+                                    <h6><b>Rooms: </b><span> @Html.DisplayFor(modelItem => item.TotalNumberOfRooms)</span></h6>
+                                </li>
+                                <li>
+                                    <h6><b>Floors: </b><span> @Html.DisplayFor(modelItem => item.NoOfFloors)</span></h6>
+                                </li>
+                                <li>
+                                    <h6><b>Type: </b><span> @Html.DisplayFor(modelItem => item.TypeOfAccommodation)</span></h6>
+                                </li>
+                                
+                            </ul>
+                            <p>@Html.DisplayFor(modelItem => item.BuildingDescription)</p>
+                            @Html.ActionLink("View property", "RoomsBooking", "Rooms", new { id = item.BuildingId }, new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        </div>
+    </div>
+<!-- Featured Properties end -->
+@*<div class="row">
     <br />
     <div>
         <table class="table">
             <div class="w3-container">
                 @foreach (var item in Model)
-                {
+                {*@
 
 
-                    <div class="col-10 mx-auto my-3 col-md-6 col-lg-4">
+                    <!--<div class="col-10 mx-auto my-3 col-md-6 col-lg-4">
                         <div class="card car-card">
-                            <a><img src="data:image/png;base64,@Convert.ToBase64String(item.BuildingPic, 0, item.BuildingPic.Length)" style="width: 300px; height: 200px" alt="" /></a>
+                            <a><img src="data:image/png;base64,Convert.ToBase64String(item.BuildingPic, 0, item.BuildingPic.Length)" style="width: 300px; height: 200px" alt="" /></a>-->
 
 
-                            @*<img src="~/img/the_car.png" class="card-img-top car-img" alt="" width="200" height="200" />*@
-                            @*<img src="Iimages/Isuzu.jpg" class="card-img-top car-img" alt="">*@
-                            <!--card body-->
-                            <h5 class="car-value align-self-centre py-2 px3">
-                                <b>Building Name - <span class="car-price">@Html.DisplayFor(modelItem => item.BuildingName)</span></b>
+                    @*<img src="~/img/the_car.png" class="card-img-top car-img" alt="" width="200" height="200" />*@
+                    @*<img src="Iimages/Isuzu.jpg" class="card-img-top car-img" alt="">*@
+                    <!--<!--card body-->
+                    <!--<h5 class="car-value align-self-centre py-2 px3">
+                        <b>Building Name - <span class="car-price">Html.DisplayFor(modelItem => item.BuildingName)</span></b>
+                    </h5>
+                    <div class="card-body">
+                        <div class="car-info d-flex justify-content-between">-->
+                    <!--first  flex child-->
+                    <!--<h5 class="car-value align-self-centre py-2 px3">
+                        Building Description - <span class="car-price">Html.DisplayFor(modelItem => item.BuildingDescription)</span>
+                    </h5>-->
+                    <!--second  flex child-->
+                    <!--<h5 class="car-value align-self-centre py-2 px3">
+                                Building Address - <span class="car-price">Html.DisplayFor(modelItem => item.Address)</span>
                             </h5>
-                            <div class="card-body">
-                                <div class="car-info d-flex justify-content-between">
-                                    <!--first  flex child-->
-                                    <h5 class="car-value align-self-centre py-2 px3">
-                                        Building Description - <span class="car-price">@Html.DisplayFor(modelItem => item.BuildingDescription)</span>
-                                    </h5>
-                                    <!--second  flex child-->
-                                    <h5 class="car-value align-self-centre py-2 px3">
-                                        Building Address - <span class="car-price">@Html.DisplayFor(modelItem => item.Address)</span>
-                                    </h5>
-                                </div>
-                            </div>
-                            <!--end of card-->
-                            <div class="card-footer text-capitalize d-flex justify-content-between">
-                                @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
-                                <p> Number Of Floors - @Html.DisplayFor(modelItem => item.NoOfFloors)</p>
-                            </div>
-                            <div class="card-footer text-capitalize d-flex justify-content-between">
-                                @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
-                                <p> Total Number of Rooms - @Html.DisplayFor(modelItem => item.TotalNumberOfRooms)</p>
-                            </div>
-                            <div class="card-footer text-capitalize d-flex justify-content-between">
-                                @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
-                                <p>Type of Accommodation - @Html.DisplayFor(modelItem => item.TypeOfAccommodation)</p>
-                            </div>
-                            @Html.ActionLink("View property", "RoomsBooking", "Rooms", new { id = item.BuildingId }, new { @class = "btn btn-success" })
-
                         </div>
-                        <hr />
+                    </div>-->
+                    <!--end of card-->
+                    <!--<div class="card-footer text-capitalize d-flex justify-content-between">-->
+                    @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
+                    <!--<p> Number Of Floors - Html.DisplayFor(modelItem => item.NoOfFloors)</p>
                     </div>
-                }
-            </div>
+                    <div class="card-footer text-capitalize d-flex justify-content-between">-->
+                    @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
+                    <!--<p> Total Number of Rooms - Html.DisplayFor(modelItem => item.TotalNumberOfRooms)</p>
+                    </div>
+                    <div class="card-footer text-capitalize d-flex justify-content-between">-->
+                    @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
+                    @*<p>Type of Accommodation - @Html.DisplayFor(modelItem => item.TypeOfAccommodation)</p>
+                </div>
+                @Html.ActionLink("View property", "RoomsBooking", "Rooms", new { id = item.BuildingId }, new { @class = "btn btn-success" })
 
-        </table>
-    </div>
+        </div>
+        <hr />
+    </div>-->
+    }*@
+                @*</div>
 
-</div>
+                </table>
+                </div>
+
+                </div>*@

@@ -247,7 +247,7 @@ namespace Accommodation.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase files)
-        {
+            {
     
             
             if (ModelState.IsValid)
@@ -255,47 +255,48 @@ namespace Accommodation.Controllers
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //if (model.Type == "Landlord")
-                //{
-                //if(files!=null && files.ContentLength > 0)
-                //{
-                //    model.FileName = files.FileName;
-                //    string[] bits = model.FileName.Split('\\');
-                //    model.FileContent = ConvertToBytes(files);
-                //}
+                if (model.Type == "Landlord")
+                {
+                    //if (files != null && files.ContentLength > 0)
+                    //{
+                    //    model.FileName = files.FileName;
+                    //    string[] bits = model.FileName.Split('\\');
+                    //    model.FileContent = ConvertToBytes(files);
+                    //}
 
-                //Owner owner = new Owner();
+                    Owner owner = new Owner();
 
-                //owner.FullName = model.FullName;
-                //owner.LastName = model.LastName;
-                //owner.Email = model.Email;
-                //owner.IDNumber = model.IDNumber;
-                //owner.Phone = model.Phone;
-                //owner.Type = model.Type;
-                //owner.AltContactNumber = model.AltContactNumber;
-                //owner.Status = "Awaiting Approval";
-                //owner.UserId = user.Id;
-                ////owner.FileContent = model.FileContent;
-                //owner.FileName = model.FileName;
-                //db.owners.Add(owner);
+                    owner.FullName = model.FullName;
+                    owner.LastName = model.LastName;
+                    owner.Email = model.Email;
+                    owner.IDNumber = model.IDNumber;
+                    owner.Phone = model.Phone;
+                    owner.Type = model.Type;
+                    owner.AltContactNumber = model.AltContactNumber;
+                    owner.Status = "Awaiting Approval";
+                    owner.UserId = user.Id;
+                    //owner.FileContent = model.FileContent;
+                    owner.FileName = model.FileName;
+                    db.owners.Add(owner);
+                    db.SaveChanges();
+                    UserManager.AddToRole(user.Id, "Landlord");
+
+
+                    }
+                    //else
+                    //{
+                //    Tenant tenant = new Tenant();
+                //tenant.TenantId = user.Id;
+                //tenant.FullName = model.FullName;
+                //tenant.LastName = model.LastName;
+                //tenant.Phone = model.Phone;
+                //tenant.IDNumber = model.IDNumber;
+                //tenant.Email = user.UserName;
+                //tenant.AltContactNumber = model.AltContactNumber;
+                //tenant.Gender = "Male";
+                //db.Tenants.Add(tenant);
                 //db.SaveChanges();
-                //UserManager.AddToRole(user.Id, "Landlord");
-
-                //}
-                //else
-                //{
-                Tenant tenant = new Tenant();
-                tenant.TenantId = user.Id;
-                tenant.FullName = model.FullName;
-                tenant.LastName = model.LastName;
-                tenant.Phone = model.Phone;
-                tenant.IDNumber = model.IDNumber;
-                tenant.Email = user.UserName;
-                tenant.AltContactNumber = model.AltContactNumber;
-                tenant.Gender = "Male";
-                db.Tenants.Add(tenant);
-                db.SaveChanges();
-                UserManager.AddToRole(user.Id, "Tenant");
+                //UserManager.AddToRole(user.Id, "Tenant");
                 //}
 
                 if (result.Succeeded)

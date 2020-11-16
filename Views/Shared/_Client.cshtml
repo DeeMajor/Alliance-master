@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html lang="zxx">
 
 <!-- Mirrored from theme-vessel-templates.theme-vessel.ey.r.appspot.com/fort/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Jul 2020 15:38:33 GMT -->
 <head>
     <!-- Google Tag Manager -->
     <script>
-    (function (w, d, s, l, i) {
+        (function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
                     new Date().getTime(), event: 'gtm.js'
@@ -112,12 +113,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav header-ml">
+
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Home
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="index-2.html">Home 01</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index","RoomTypes")">Roome Type</a></li>
                                 <li><a class="dropdown-item" href="index-3.html">Home 02</a></li>
                                 <li><a class="dropdown-item" href="index-4.html">Home 03</a></li>
                                 <li><a class="dropdown-item" href="index-5.html">Home 04</a></li>
@@ -230,16 +232,27 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="login.html">
-                                <i class="flaticon-logout"></i>Sign In
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="submit-property.html" class="nav-link link-color"><i class="flaticon-plus"></i>Submit Property</a>
-                        </li>
-                    </ul>
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                @Html.AntiForgeryToken()
+                                    <ul class="navbar-nav ml-auto">
+                                        <li>
+                                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                        </li>
+                                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                    </ul> }
+                                                }
+                                                else
+                                                {
+                <ul class="navbar-nav ml-auto">
+                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+
+                </ul>
+                                                }
                 </div>
             </nav>
         </div>

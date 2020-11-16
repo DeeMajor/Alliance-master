@@ -2,107 +2,142 @@
 
 @{
     ViewBag.Title = "Appointment Details";
+    Layout = "~/Views/Shared/_Client.cshtml";
 }
 
 @*<h2 class="title text-center">@ViewBag.Title</h2>*@
-<div class="row">
-    <div class="col-md-4">
-        <h3>Room Details</h3>
-        <table class="table">
-            <tr>
-                <th style="width:120px">Booking #</th>
-                <td>
-                    <div class="input-group">
+<!-- Featured Properties start -->
+<div class="featured-properties content-area-14">
+    <div class="container">
+        <!-- Main title -->
+        <div class="main-title">
+            <h1>CONFIRMATION</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
 
-                        @Html.DisplayFor(m => m.BookingId, new { @class = "form-control", @placeholder = "Registration Number" })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.BookingId, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <th>Room Number</th>
-                <td>
-                    <div class="input-group">
-                        @Html.DisplayFor(m => m.Room.RoomNumber, new { @class = "form-control", @placeholder = "Registration Number" })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.Room.RoomNumber, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <th>Room Price   </th>
-                <td>
-                    <div class="input-group">
-                        @Html.DisplayFor(m => m.RoomPrice, new { @class = "form-control", @placeholder = "Registration Number" })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.RoomPrice, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            @*<tr>
-                    <th>@Html.LabelFor(model => model.NextOfKinID)</th>
-                    <td>
-                        <div class="input-group">
+                <table class="table table-bordered mb-0">
+                    <thead class="bg-active">
+                        <tr>
 
-                            @Html.DisplayFor(m => m.NextOfKinID, new { @class = "form-control", @placeholder = "Registration Number" })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.NextOfKinID, "", new { @class = "text-danger" })
-                    </td>
-                </tr>*@
 
-        </table>
-    </div>
-    <div class="col-md-4">
-        <h3>Booking details</h3>
-        <table class="table">
-            <tr>
-                <th>@Html.LabelFor(model => model.DateOFBooking)</th>
-                <td>
-                    <div class="input-group">
+                            <th colspan="2">
+                                Room Details
+                            </th>
 
-                        @Html.DisplayFor(m => m.DateOFBooking, new { htmlAttributes = new { @class = "form-control", @placeholder = "Registration Number" } })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.DateOFBooking, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <th>Building Name</th>
-                <td>
-                    <div class="input-group">
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
 
-                        @Html.DisplayFor(m => m.BuildingId, new { @class = "form-control", @placeholder = "Registration Number" })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.BuildingId, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <th>@Html.LabelFor(model => model.BuildingAddress)</th>
-                <td>
-                    <div class="input-group">
+                            <th scope="row">Booking #</th>
+                            <td>
+                                <div class="input-group">
 
-                        @Html.DisplayFor(m => m.BuildingAddress, new { @class = "form-control", @placeholder = "Registration Number" })
-                    </div>
-                    @Html.ValidationMessageFor(m => m.BuildingAddress, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    @if (Model.QrCodeImage != null)
-                    {
-        <p style="text-align:center">
-            <img alt="" src="data:image/png;base64,@Convert.ToBase64String(Model.QrCodeImage, 0, Model.QrCodeImage.Length)" />
-        </p>}
-                </td>
-            </tr>
-        </table>
+                                    @Html.DisplayFor(m => m.BookingId, new { @class = "form-control", @placeholder = "Registration Number" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.BookingId, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Room Number</th>
+                            <td>
+                                <div class="input-group">
+                                    @Html.DisplayFor(m => m.Room.RoomNumber, new { @class = "form-control", @placeholder = "Registration Number" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Room.RoomNumber, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th  scope="row">Room Price  </th>
+                            <td>
+                                <div class="input-group">
+                                    @Html.DisplayFor(m => m.RoomPrice, new { @class = "form-control", @placeholder = "Registration Number" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.RoomPrice, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        @*<tr>
+                                <th>@Html.LabelFor(model => model.NextOfKinID)</th>
+                                <td>
+                                    <div class="input-group">
+
+                                        @Html.DisplayFor(m => m.NextOfKinID, new { @class = "form-control", @placeholder = "Registration Number" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.NextOfKinID, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>*@
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+
+                <table class="table table-bordered mb-0">
+                    <thead class="bg-active">
+                        <tr>
+
+
+                            <th colspan="2">
+                                Booking Details
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">@Html.LabelFor(model => model.DateOFBooking)</th>
+                            <td>
+                                <div class="input-group">
+
+                                    @Html.DisplayFor(m => m.DateOFBooking, new { htmlAttributes = new { @class = "form-control", @placeholder = "Registration Number" } })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.DateOFBooking, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Building Name</th>
+                            <td>
+                                <div class="input-group">
+
+                                    @Html.DisplayFor(m => m.BuildingId, new { @class = "form-control", @placeholder = "Registration Number" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.BuildingId, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.LabelFor(model => model.BuildingAddress)</th>
+                            <td>
+                                <div class="input-group">
+
+                                    @Html.DisplayFor(m => m.BuildingAddress, new { @class = "form-control", @placeholder = "Registration Number" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.BuildingAddress, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                @if (Model.QrCodeImage != null)
+                                {
+                                    <p style="text-align:center">
+                                        <img alt="" src="data:image/png;base64,@Convert.ToBase64String(Model.QrCodeImage, 0, Model.QrCodeImage.Length)" />
+                                    </p>}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row text-center" style="margin-left:30%;margin-top:10%">
+            <a class="btn btn-primary" href="@Url.Action("Index","Appointments")">
+                <i class="fa fa-angle-left"></i>
+                My Room Booking details
+            </a>
+            @Html.ActionLink("Confirm and Accept Payment", "Details", "RoomBookings", new { id = Model.BookingId }, new { @class = "btn btn-success" })
+
+
+        </div>
+
     </div>
 </div>
-
-<div class="row text-center">
-    <a class="btn btn-default" href="@Url.Action("Index","Appointments")">
-        <i class="fa fa-angle-left"></i>
-        My Room Booking details
-    </a>
-    @Html.ActionLink("Confirm and Accept Payment", "Details", "RoomBookings", new { id = Model.BookingId }, new { @class = "btn btn-success" })
-
-
-</div>
-

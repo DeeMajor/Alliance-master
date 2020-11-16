@@ -2,63 +2,72 @@
 
 @{
     ViewBag.Title = "RoomBooking";
+    Layout = "~/Views/Shared/_Client.cshtml";
 }
 <br />
-<h2 align="center">Room Booking</h2>
-<div class="row">
-    @{foreach (var x in Model.Select(n => n.RoomTypes.Type).Distinct())
-        {
+<h2 align="center"style="margin-bottom:0px;">Room Booking</h2>
 
-            <h3>Room Type :@x</h3>
-            <br />
-            <div>
-                <table class="table">
-                    <div class="w3-container">
-                        @foreach (var item in Model.Where(a => a.RoomTypes.Type.Equals(@x)))
-                        {
-                            
+@{foreach (var x in Model.Select(n => n.RoomTypes.Type).Distinct())
+    {
+   
 
-                            <div class="col-10 mx-auto my-3 col-md-6 col-lg-4">
-                                <div class="card car-card">
-                                    <a><img src="data:image/png;base64,@Convert.ToBase64String(item.RoomPicture, 0, item.RoomPicture.Length)" style="width: 300px; height: 200px" alt="" /></a>
+        @*<h3>Room Type :@x</h3>
+        <br />
+        <div>
+            <table class="table">
+                <div class="w3-container">*@
+        <div class="featured-properties content-area-14">
+            <div class="container" style="margin-top:-130px;">
+                <!-- Main title -->
+                <div class="main-title" style="margin-top:0px;">
+                    <h3>Room Type :@x</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                </div>
+                <div class="row">
+                    @foreach (var item in Model.Where(a => a.RoomTypes.Type.Equals(@x)))
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="property-box">
+                                <div class="property-thumbnail">
+                                    <a href="properties-details.html" class="property-img">
+                                        <div class="tag">@x</div>
+                                        @*<div class="price-box"><span>$850.00</span> month</div>*@
+                                        <img class="d-block w-100" src="data:image/png;base64,@Convert.ToBase64String(item.RoomPicture, 0, item.RoomPicture.Length)" style="width: 300px; height: 200px" alt="" />
+                                    </a>
+                                </div>
+                                <div class="detail">
+                                    <h1 class="title">
+                                        <a href="#">@Html.DisplayFor(modelItem => item.RoomPrice)</a>
+                                    </h1>
+                                  
+                                    <ul class=" clearfix">
+                                        <li>
+                                            <h6><b>Room Number: </b><span> @Html.DisplayFor(modelItem => item.RoomNumber)</span></h6>
+                                        </li>
+                                        <li>
+                                            <h6><b>No. Of People: </b><span> @Html.DisplayFor(modelItem => item.NoOfPeople)</span></h6>
+                                        </li>
+                                    </ul>
+                                    <p>@Html.DisplayFor(modelItem => item.roomDescription)</p>
+                                    <div class="row">
+                                        <div class="col-5">
+                                            @Html.ActionLink("Book Room", "Create", "RoomBookings", new { id = item.RoomId }, new { @class = "btn btn-info" })
 
+                                        </div>
+                                        <div class="col-3">
+                                            @Html.ActionLink("Make Appointment", "Create", "Appointments", new { id = item.BuildingId }, new { @class = "btn btn-success" })
 
-                                    @*<img src="~/img/the_car.png" class="card-img-top car-img" alt="" width="200" height="200" />*@
-                                    @*<img src="Iimages/Isuzu.jpg" class="card-img-top car-img" alt="">*@
-                                    <!--card body-->
-                                    <div class="card-body">
-                                        <div class="car-info d-flex justify-content-between">
-                                            <!--first  flex child-->
-                                            <h5 class="car-value align-self-centre py-2 px3">
-                                                Room Description - <span class="car-price">@Html.DisplayFor(modelItem => item.roomDescription)</span>
-                                            </h5>
-                                            <!--second  flex child-->
-                                            <h5 class="car-value align-self-centre py-2 px3">
-                                                Room Price - <span class="car-price">@Html.DisplayFor(modelItem => item.RoomPrice)</span>
-                                            </h5>
                                         </div>
                                     </div>
-                                    <!--end of card-->
-                                    <div class="card-footer text-capitalize d-flex justify-content-between">
-                                        @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
-                                        <p> Room Number @Html.DisplayFor(modelItem => item.RoomNumber)</p>
-
-                                    </div>
-                                    <div class="card-footer text-capitalize d-flex justify-content-between">
-                                        @*<p><span><i class="fas fa-car"></i></span>@Html.DisplayFor(modelItem => item..CategoryName)</p>*@
-                                        <p>Number of people @Html.DisplayFor(modelItem => item.NoOfPeople)</p>
-                                    </div>
-                                    @Html.ActionLink("Book Room", "Create", "RoomBookings", new { id = item.RoomId }, new { @class = "btn btn-info" })
-                                    @Html.ActionLink("Make Appointment", "Create", "Appointments", new { id = item.BuildingId }, new { @class = "btn btn-success" })
-
                                 </div>
-                                <hr />
                             </div>
-                        }
-                    </div>
+                        </div>
 
-                </table>
+                    }
+                </div>
             </div>
-        }
-    }
-</div>
+        </div>
+    
+            }
+}
+      
